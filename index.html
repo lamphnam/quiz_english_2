@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fill in the Blank – Health Idioms Edition</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Trò chơi Tục ngữ về Sức khỏe</h1>
+
+    <div class="game-container">
+      <div class="game-controls">
+        <button class="shuffle-btn" id="shuffleBtn">Xáo trộn từ</button>
+        <button class="reset-btn" id="resetBtn">Reset Game</button>
+      </div>
+
+      <div class="answers-pool" id="answersPool">
+        <div class="answer-card" draggable="true" data-answer="doctor">
+          doctor
+        </div>
+        <div class="answer-card" draggable="true" data-answer="dull">dull</div>
+        <div class="answer-card" draggable="true" data-answer="empty">
+          empty
+        </div>
+        <div class="answer-card" draggable="true" data-answer="body">body</div>
+        <div class="answer-card" draggable="true" data-answer="candle">
+          candle
+        </div>
+        <div class="answer-card" draggable="true" data-answer="not">not</div>
+        <div class="answer-card" draggable="true" data-answer="nothing">
+          nothing
+        </div>
+      </div>
+
+      <div class="questions" id="questions">
+        <div class="question">
+          <div>
+            An apple a day keeps the
+            <span class="drop-zone" data-answer="doctor"></span> away.
+          </div>
+          <div class="explanation">
+            → Chế độ ăn uống lành mạnh giúp giữ gìn sức khỏe.
+          </div>
+          <div class="show-meaning">
+            <input type="checkbox" id="meaning1" class="meaning-checkbox" />
+            <label for="meaning1">Xem nghĩa</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <div>
+            All work and no play makes Jack a
+            <span class="drop-zone" data-answer="dull"></span> boy.
+          </div>
+          <div class="explanation">→ Cần cân bằng học tập và nghỉ ngơi.</div>
+          <div class="show-meaning">
+            <input type="checkbox" id="meaning2" class="meaning-checkbox" />
+            <label for="meaning2">Xem nghĩa</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <div>
+            You can't pour from an
+            <span class="drop-zone" data-answer="empty"></span> cup.
+          </div>
+          <div class="explanation">
+            → Hãy chăm sóc bản thân trước khi giúp người khác.
+          </div>
+          <div class="show-meaning">
+            <input type="checkbox" id="meaning3" class="meaning-checkbox" />
+            <label for="meaning3">Xem nghĩa</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <div>
+            A sound mind in a sound
+            <span class="drop-zone" data-answer="body"></span>.
+          </div>
+          <div class="explanation">
+            → Sức khỏe tinh thần và thể chất luôn đi cùng nhau.
+          </div>
+          <div class="show-meaning">
+            <input type="checkbox" id="meaning4" class="meaning-checkbox" />
+            <label for="meaning4">Xem nghĩa</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <div>
+            Don't burn the
+            <span class="drop-zone" data-answer="candle"></span> at both ends.
+          </div>
+          <div class="explanation">
+            → Nghĩa bóng: Đừng vắt kiệt sức mình vì làm việc quá độ.
+          </div>
+          <div class="show-meaning">
+            <input type="checkbox" id="meaning5" class="meaning-checkbox" />
+            <label for="meaning5">Xem nghĩa</label>
+          </div>
+        </div>
+
+        <div class="question">
+          <div>
+            Health is <span class="drop-zone" data-answer="not"></span>, not
+            everything, but without it everything is
+            <span class="drop-zone" data-answer="nothing"></span>.
+          </div>
+          <div class="explanation">
+            → Nhấn mạnh vai trò cốt lõi của sức khỏe.
+          </div>
+          <div class="show-meaning">
+            <input type="checkbox" id="meaning6" class="meaning-checkbox" />
+            <label for="meaning6">Xem nghĩa</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="message" id="message"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
