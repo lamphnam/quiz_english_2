@@ -70,6 +70,7 @@ h1 {
 .answer-card.selected {
     background-color: #2980b9;
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+    transform: translateY(-2px);
 }
 
 .questions {
@@ -196,7 +197,7 @@ h1 {
 
 .mobile-instructions {
     text-align: center;
-    margin-top: 15px;
+    margin: 10px 0 15px;
     padding: 10px;
     background-color: #d4e6f1;
     border-radius: 5px;
@@ -246,32 +247,34 @@ h1 {
     }
     
     .answer-card {
-        padding: 8px 12px;
-        font-size: 0.95rem;
+        padding: 12px 15px; /* Increased tap target size */
+        font-size: 1rem;
+        margin: 3px;
     }
     
     .drop-zone {
         min-width: 70px;
-        min-height: 28px;
+        min-height: 32px; /* Increased tap target size */
+        padding: 5px;
     }
     
     .question {
-        padding: 10px;
+        padding: 12px;
     }
     
     .question-text {
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
     
     .explanation {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         margin-left: 5px;
     }
     
     .shuffle-btn, .reset-btn {
-        padding: 8px 12px;
-        font-size: 0.95rem;
-        min-width: 110px;
+        padding: 12px 15px; /* Increased tap target size */
+        font-size: 1rem;
+        min-width: 130px;
     }
     
     .message {
@@ -280,6 +283,17 @@ h1 {
     
     .mobile-instructions {
         display: block;
+    }
+    
+    /* Increase checkbox size for better tapping */
+    .meaning-checkbox {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .meaning-checkbox + label {
+        font-size: 1rem;
+        padding: 5px 0;
     }
 }
 
@@ -293,21 +307,10 @@ h1 {
     }
     
     .answer-card {
-        padding: 7px 10px;
-        font-size: 0.9rem;
+        padding: 10px 12px;
     }
     
     .drop-zone {
-        min-width: 60px;
-    }
-    
-    .question-text {
-        font-size: 0.9rem;
-    }
-    
-    .shuffle-btn, .reset-btn {
-        padding: 8px 10px;
-        font-size: 0.9rem;
-        min-width: 100px;
+        min-width: 65px;
     }
 }

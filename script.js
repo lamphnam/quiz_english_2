@@ -1,6 +1,6 @@
-// Audio files setup
-const correctSound = new Audio('data:audio/wav;base64,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');
-const incorrectSound = new Audio('data:audio/wav;base64,UklGRkQFAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAFAAAAf39/f39/f39/f39/3t3d3d3d3d3dnJycnJycnJyczMzMzP39/f3b29vb2tra2tqZmZmZmZmZmZnw8PDw////Wnp6enp6enp68PDw8CIiIiLLy8vLysrKygAAAADR0dHRwcHBwVpaWlo6OjpDOjMhAAAAACIiIiI6Ojk6OzpDSmJaWlrR0dHRAAAAAMvKy8vLy8vL8PDw8P///9vb29vb29vbu7u7u3p6enp6enp6f39/f39/f39/f39/f39/f39/f3+7u7u7u7u7u7vLy8vL///8//Lx8vLy8vLywsHBwSMiIiIjIiIiWVpZWmFhWFhiWlRTVFRTVFtcW1xiYnp68PDw8PDw8PAAAAAAREZTU0ZFRkYAAAAAAAAAAP///////////////8HBwcHBwcHBWlpaWrq6urpFRUVFwcG6un9/f38AAAAAAAAAAAAjIiMjIyMjI////wCbm5ub2tra2v///wDb29vb29vb29vb29vi4uLim5ubm39/f39/f39/f38jIyMjIiIiIiIiIiL///7/YWFhYWFhYWHCwsLCbW5tbW1tbW3CwsLCwsLCwltbW1vi4tPTKCgoKCgoKCg6Ojo6Pj4+PllZWVljY2lpWVljY2JhYVpbWltjY2NjwcHBwcHBwcG7u7u7ent7e3p6enp+f39/f39/f39/f39/f39/f3t7e3vw8PDwqaenp39/f3/a2tra////////////xcTExImIgn+BhISFhIeHh4h/gICAhIeJicXFxcX///////+jo6Ojo6Ojo1RUVFTBwcHBW1hZWVtbW1tPT09PpaWlpQ0NDQ2lrKWlqa2srKysrKz///////////////////8AAAAAAAAAAAAAAADd3eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXlmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZAAABAP//AAABAAEA///+/Pz8+vr39fb18/Pz8fHw7+/v7e3t7Ovr6+jo6Ojm5ubl4+Li4uDg396cnJucnJybnJyZmZlxbmtqaGdmZWRiYmJfX11bW1lZWFhYU1JQTk5OTEtLSEdGQ0FBQTo4NzU0MzIwLiwrKCcmJSQiIiEfHx0cGxsaGBgWFhYWFBMTEREQDg0NDQwKCQkIBQT/AAAAAAAAAAD//wAA//8AAP////////////////////////////////8=');
+// Audio files setup - using local audio files with relative paths
+const correctSound = new Audio('correct.mp3');
+const incorrectSound = new Audio('incorrect.mp3');
 
 // Global variables
 let draggedElement = null;
@@ -41,37 +41,80 @@ function initDragAndDrop() {
     const dropZones = document.querySelectorAll('.drop-zone');
 
     answerCards.forEach(card => {
+        // Standard drag events for desktop
         card.addEventListener('dragstart', dragStart);
         card.addEventListener('dragend', dragEnd);
         
-        // Add click event for mobile
+        // Touch events for mobile
+        card.addEventListener('touchstart', touchStart);
+        card.addEventListener('touchend', touchEnd);
         card.addEventListener('click', cardClick);
     });
 
     dropZones.forEach(zone => {
+        // Standard drag events for desktop
         zone.addEventListener('dragover', dragOver);
         zone.addEventListener('dragleave', dragLeave);
         zone.addEventListener('drop', drop);
         
-        // Add click event for mobile
+        // Touch events for mobile
+        zone.addEventListener('touchstart', zoneTouchStart);
+        zone.addEventListener('touchend', zoneTouchEnd);
         zone.addEventListener('click', zoneClick);
     });
 }
 
 // Initialize touch events for mobile devices
 function initMobileTouch() {
+    // Make answer cards non-draggable on mobile to prevent browser's default drag behavior
+    document.querySelectorAll('.answer-card').forEach(card => {
+        card.setAttribute('draggable', 'false');
+    });
+    
     // Prevent default touch behaviors that might interfere
     document.addEventListener('touchstart', function(e) {
         if (e.target.classList.contains('answer-card') || e.target.classList.contains('drop-zone')) {
-            e.preventDefault();
+            // Don't prevent default here to allow scrolling
         }
-    }, { passive: false });
+    }, { passive: true });
     
     document.addEventListener('touchmove', function(e) {
-        if (e.target.classList.contains('answer-card') || e.target.classList.contains('drop-zone')) {
-            e.preventDefault();
-        }
-    }, { passive: false });
+        // Allow default touch move for scrolling
+    }, { passive: true });
+}
+
+// Touch start handler for answer cards
+function touchStart(e) {
+    if (!isMobileDevice) return;
+    // Just mark this card as being touched
+    e.target.dataset.touched = 'true';
+}
+
+// Touch end handler for answer cards
+function touchEnd(e) {
+    if (!isMobileDevice) return;
+    // Clear the touched state
+    e.target.dataset.touched = 'false';
+}
+
+// Touch start handler for drop zones
+function zoneTouchStart(e) {
+    if (!isMobileDevice) return;
+    // Just mark this zone as being touched
+    e.target.dataset.zoneTouched = 'true';
+}
+
+// Touch end handler for drop zones
+function zoneTouchEnd(e) {
+    if (!isMobileDevice) return;
+    
+    // If we have a selected card and this zone was touched
+    if (selectedCard && e.target.dataset.zoneTouched === 'true') {
+        handleCardPlacement(selectedCard, e.target);
+    }
+    
+    // Clear the touched state
+    e.target.dataset.zoneTouched = 'false';
 }
 
 // Initialize meaning checkboxes
@@ -100,13 +143,13 @@ function cardClick(e) {
     }
     
     // If clicking the same card, deselect it
-    if (selectedCard === e.target) {
+    if (selectedCard === e.currentTarget) {
         selectedCard = null;
         return;
     }
     
     // Select the clicked card
-    selectedCard = e.target;
+    selectedCard = e.currentTarget;
     selectedCard.classList.add('selected');
 }
 
@@ -114,59 +157,87 @@ function cardClick(e) {
 function zoneClick(e) {
     if (!isMobileDevice || !selectedCard) return;
     
+    handleCardPlacement(selectedCard, e.currentTarget);
+}
+
+// Common function to handle card placement (for both drag-drop and touch)
+function handleCardPlacement(card, zone) {
     // If the drop zone is already filled, do nothing
-    if (e.target.classList.contains('filled')) {
+    if (zone.classList.contains('filled')) {
         return;
     }
     
-    const droppedAnswer = selectedCard.dataset.answer;
-    const correctAnswer = e.target.dataset.answer;
+    const droppedAnswer = card.dataset.answer;
+    const correctAnswer = zone.dataset.answer;
     
     // Check if the answer is correct
     if (droppedAnswer === correctAnswer) {
         // Set the text content and add the correct class
-        e.target.textContent = droppedAnswer;
-        e.target.classList.add('filled', 'correct');
-        e.target.classList.add('correct-answer');
+        zone.textContent = droppedAnswer;
+        zone.classList.add('filled', 'correct');
+        zone.classList.add('correct-answer');
         
         // Hide the selected card
-        selectedCard.style.display = 'none';
+        card.style.display = 'none';
         
         // Play correct sound
-        correctSound.play();
+        playSound(correctSound);
         
         // Deselect the card
-        selectedCard.classList.remove('selected');
+        if (card.classList.contains('selected')) {
+            card.classList.remove('selected');
+        }
         selectedCard = null;
         
         // Check if all questions are completed
         checkCompletion();
     } else {
         // Set the text content temporarily and add the incorrect class
-        e.target.textContent = droppedAnswer;
-        e.target.classList.add('filled', 'incorrect');
+        zone.textContent = droppedAnswer;
+        zone.classList.add('filled', 'incorrect');
         
         // Play incorrect sound
-        incorrectSound.play();
+        playSound(incorrectSound);
         
         // Add shake animation
-        e.target.style.animation = 'shake 0.5s';
+        zone.style.animation = 'shake 0.5s';
         
         // Deselect the card
-        selectedCard.classList.remove('selected');
+        if (card.classList.contains('selected')) {
+            card.classList.remove('selected');
+        }
         selectedCard = null;
         
         // Reset after a short delay
         setTimeout(() => {
-            e.target.textContent = '';
-            e.target.classList.remove('filled', 'incorrect');
-            e.target.style.animation = '';
+            zone.textContent = '';
+            zone.classList.remove('filled', 'incorrect');
+            zone.style.animation = '';
         }, 1000);
+    }
+}
+
+// Safe sound playing function
+function playSound(sound) {
+    // Reset the sound to the beginning
+    sound.currentTime = 0;
+    
+    // Create a promise to play the sound
+    const playPromise = sound.play();
+    
+    // Handle potential play() promise rejection
+    if (playPromise !== undefined) {
+        playPromise.catch(error => {
+            console.log("Audio play error:", error);
+            // Auto-play might be blocked, we could show a play button here
+        });
     }
 }
 
 // Drag start event handler
 function dragStart(e) {
+    if (isMobileDevice) return; // Skip on mobile
+    
     draggedElement = e.target;
     e.target.classList.add('dragging');
     e.dataTransfer.setData('text/plain', e.target.dataset.answer);
@@ -174,22 +245,30 @@ function dragStart(e) {
 
 // Drag end event handler
 function dragEnd(e) {
+    if (isMobileDevice) return; // Skip on mobile
+    
     e.target.classList.remove('dragging');
 }
 
 // Drag over event handler
 function dragOver(e) {
+    if (isMobileDevice) return; // Skip on mobile
+    
     e.preventDefault();
     e.target.classList.add('drag-over');
 }
 
 // Drag leave event handler
 function dragLeave(e) {
+    if (isMobileDevice) return; // Skip on mobile
+    
     e.target.classList.remove('drag-over');
 }
 
 // Drop event handler
 function drop(e) {
+    if (isMobileDevice) return; // Skip on mobile
+    
     e.preventDefault();
     e.target.classList.remove('drag-over');
     
@@ -213,7 +292,7 @@ function drop(e) {
         draggedElement.style.display = 'none';
         
         // Play correct sound
-        correctSound.play();
+        playSound(correctSound);
         
         // Check if all questions are completed
         checkCompletion();
@@ -223,7 +302,7 @@ function drop(e) {
         e.target.classList.add('filled', 'incorrect');
         
         // Play incorrect sound
-        incorrectSound.play();
+        playSound(incorrectSound);
         
         // Add shake animation
         e.target.style.animation = 'shake 0.5s';
