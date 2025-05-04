@@ -4,14 +4,36 @@ const incorrectSound = new Audio('data:audio/wav;base64,UklGRkQFAABXQVZFZm10IBAA
 
 // Global variables
 let draggedElement = null;
+let selectedCard = null;
+let isMobileDevice = false;
 
 // Initialize the game when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // Check if it's a mobile device
+    checkMobileDevice();
+    
+    // Initialize game components
     initDragAndDrop();
     initMeaningCheckboxes();
+    
+    // Add event listeners for buttons
     document.getElementById('resetBtn').addEventListener('click', resetGame);
     document.getElementById('shuffleBtn').addEventListener('click', shuffleAnswers);
+    
+    // Initial shuffle
+    shuffleAnswers();
 });
+
+// Check if the device is mobile
+function checkMobileDevice() {
+    isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                     (window.matchMedia && window.matchMedia('(max-width: 768px)').matches);
+    
+    if (isMobileDevice) {
+        document.getElementById('mobileInstructions').style.display = 'block';
+        initMobileTouch();
+    }
+}
 
 // Initialize drag and drop functionality
 function initDragAndDrop() {
@@ -21,13 +43,35 @@ function initDragAndDrop() {
     answerCards.forEach(card => {
         card.addEventListener('dragstart', dragStart);
         card.addEventListener('dragend', dragEnd);
+        
+        // Add click event for mobile
+        card.addEventListener('click', cardClick);
     });
 
     dropZones.forEach(zone => {
         zone.addEventListener('dragover', dragOver);
         zone.addEventListener('dragleave', dragLeave);
         zone.addEventListener('drop', drop);
+        
+        // Add click event for mobile
+        zone.addEventListener('click', zoneClick);
     });
+}
+
+// Initialize touch events for mobile devices
+function initMobileTouch() {
+    // Prevent default touch behaviors that might interfere
+    document.addEventListener('touchstart', function(e) {
+        if (e.target.classList.contains('answer-card') || e.target.classList.contains('drop-zone')) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+    
+    document.addEventListener('touchmove', function(e) {
+        if (e.target.classList.contains('answer-card') || e.target.classList.contains('drop-zone')) {
+            e.preventDefault();
+        }
+    }, { passive: false });
 }
 
 // Initialize meaning checkboxes
@@ -46,27 +90,78 @@ function initMeaningCheckboxes() {
     });
 }
 
-// Shuffle the answer cards
-function shuffleAnswers() {
-    const answersPool = document.getElementById('answersPool');
-    const answerCards = Array.from(answersPool.querySelectorAll('.answer-card'));
+// Handle card click for mobile devices
+function cardClick(e) {
+    if (!isMobileDevice) return;
     
-    // Only shuffle visible cards (cards that haven't been used yet)
-    const visibleCards = answerCards.filter(card => card.style.display !== 'none');
+    // Deselect previously selected card if any
+    if (selectedCard) {
+        selectedCard.classList.remove('selected');
+    }
     
-    // Apply shuffling animation to the answers pool
-    answersPool.classList.add('shuffling');
+    // If clicking the same card, deselect it
+    if (selectedCard === e.target) {
+        selectedCard = null;
+        return;
+    }
     
-    // Remove the animation class after it completes
-    setTimeout(() => {
-        answersPool.classList.remove('shuffling');
-    }, 500);
+    // Select the clicked card
+    selectedCard = e.target;
+    selectedCard.classList.add('selected');
+}
+
+// Handle drop zone click for mobile devices
+function zoneClick(e) {
+    if (!isMobileDevice || !selectedCard) return;
     
-    // Fisher-Yates shuffle algorithm
-    for (let i = visibleCards.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        // Swap elements
-        answersPool.insertBefore(visibleCards[j], visibleCards[i]);
+    // If the drop zone is already filled, do nothing
+    if (e.target.classList.contains('filled')) {
+        return;
+    }
+    
+    const droppedAnswer = selectedCard.dataset.answer;
+    const correctAnswer = e.target.dataset.answer;
+    
+    // Check if the answer is correct
+    if (droppedAnswer === correctAnswer) {
+        // Set the text content and add the correct class
+        e.target.textContent = droppedAnswer;
+        e.target.classList.add('filled', 'correct');
+        e.target.classList.add('correct-answer');
+        
+        // Hide the selected card
+        selectedCard.style.display = 'none';
+        
+        // Play correct sound
+        correctSound.play();
+        
+        // Deselect the card
+        selectedCard.classList.remove('selected');
+        selectedCard = null;
+        
+        // Check if all questions are completed
+        checkCompletion();
+    } else {
+        // Set the text content temporarily and add the incorrect class
+        e.target.textContent = droppedAnswer;
+        e.target.classList.add('filled', 'incorrect');
+        
+        // Play incorrect sound
+        incorrectSound.play();
+        
+        // Add shake animation
+        e.target.style.animation = 'shake 0.5s';
+        
+        // Deselect the card
+        selectedCard.classList.remove('selected');
+        selectedCard = null;
+        
+        // Reset after a short delay
+        setTimeout(() => {
+            e.target.textContent = '';
+            e.target.classList.remove('filled', 'incorrect');
+            e.target.style.animation = '';
+        }, 1000);
     }
 }
 
@@ -142,6 +237,30 @@ function drop(e) {
     }
 }
 
+// Shuffle the answer cards
+function shuffleAnswers() {
+    const answersPool = document.getElementById('answersPool');
+    const answerCards = Array.from(answersPool.querySelectorAll('.answer-card'));
+    
+    // Only shuffle visible cards (cards that haven't been used yet)
+    const visibleCards = answerCards.filter(card => card.style.display !== 'none');
+    
+    // Apply shuffling animation to the answers pool
+    answersPool.classList.add('shuffling');
+    
+    // Remove the animation class after it completes
+    setTimeout(() => {
+        answersPool.classList.remove('shuffling');
+    }, 500);
+    
+    // Fisher-Yates shuffle algorithm
+    for (let i = visibleCards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        // Swap elements
+        answersPool.insertBefore(visibleCards[j], visibleCards[i]);
+    }
+}
+
 // Check if all questions are completed
 function checkCompletion() {
     const allDropZones = document.querySelectorAll('.drop-zone');
@@ -171,6 +290,7 @@ function resetGame() {
     // Reset answer cards
     answerCards.forEach(card => {
         card.style.display = 'block';
+        card.classList.remove('selected');
     });
     
     // Reset drop zones
@@ -189,6 +309,9 @@ function resetGame() {
         checkbox.checked = false;
     });
     
+    // Reset selected card
+    selectedCard = null;
+    
     // Reset completion message
     document.getElementById('message').textContent = '';
     document.getElementById('message').className = 'message';
@@ -196,3 +319,8 @@ function resetGame() {
     // Shuffle the answers after reset for a new game experience
     shuffleAnswers();
 }
+
+// Handle window resize to update mobile detection
+window.addEventListener('resize', function() {
+    checkMobileDevice();
+});

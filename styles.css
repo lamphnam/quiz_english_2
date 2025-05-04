@@ -1,50 +1,65 @@
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    touch-action: manipulation;
+}
+
+.game-wrapper {
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
-    background-color: #f5f5f5;
+    padding: 15px;
 }
 
 h1 {
     text-align: center;
     color: #2c3e50;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
 }
 
 .game-container {
     background-color: white;
     border-radius: 10px;
-    padding: 20px;
+    padding: 15px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .game-controls {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
 }
 
 .answers-pool {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 30px;
+    gap: 8px;
+    margin-bottom: 20px;
     justify-content: center;
 }
 
 .answer-card {
     background-color: #3498db;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 15px;
     border-radius: 5px;
-    cursor: move;
+    cursor: pointer;
     user-select: none;
     transition: transform 0.2s, background-color 0.3s;
+    font-size: 1rem;
+    touch-action: none;
 }
 
-.answer-card:hover {
+.answer-card:hover, .answer-card:active {
     transform: translateY(-2px);
 }
 
@@ -52,30 +67,41 @@ h1 {
     opacity: 0.5;
 }
 
+.answer-card.selected {
+    background-color: #2980b9;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+}
+
 .questions {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
 }
 
 .question {
     background-color: #ecf0f1;
-    padding: 15px;
+    padding: 12px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
+}
+
+.question-text {
+    line-height: 1.5;
+    font-size: 1rem;
 }
 
 .drop-zone {
     display: inline-block;
-    min-width: 100px;
+    min-width: 80px;
     border-bottom: 3px solid #3498db;
-    margin: 0 10px;
+    margin: 0 5px;
     text-align: center;
-    padding: 5px;
+    padding: 3px 5px;
     min-height: 30px;
     position: relative;
+    vertical-align: middle;
 }
 
 .drop-zone.drag-over {
@@ -87,7 +113,7 @@ h1 {
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 5px 10px;
+    padding: 3px 8px;
 }
 
 .filled.correct {
@@ -101,9 +127,10 @@ h1 {
 .explanation {
     color: #7f8c8d;
     font-style: italic;
-    margin-left: 20px;
+    margin-left: 10px;
     display: none;
     transition: opacity 0.3s ease;
+    font-size: 0.9rem;
 }
 
 .explanation.show {
@@ -119,21 +146,24 @@ h1 {
 .meaning-checkbox {
     margin-right: 5px;
     cursor: pointer;
+    width: 16px;
+    height: 16px;
 }
 
 .meaning-checkbox + label {
-    font-size: 0.9em;
+    font-size: 0.9rem;
     color: #7f8c8d;
     cursor: pointer;
 }
 
 .shuffle-btn, .reset-btn {
-    padding: 10px 20px;
+    padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
     transition: background-color 0.3s, transform 0.2s;
+    min-width: 120px;
 }
 
 .shuffle-btn {
@@ -141,7 +171,7 @@ h1 {
     color: white;
 }
 
-.shuffle-btn:hover {
+.shuffle-btn:hover, .shuffle-btn:active {
     background-color: #e67e22;
     transform: scale(1.05);
 }
@@ -151,16 +181,28 @@ h1 {
     color: white;
 }
 
-.reset-btn:hover {
+.reset-btn:hover, .reset-btn:active {
     background-color: #8e44ad;
     transform: scale(1.05);
 }
 
 .message {
     text-align: center;
-    font-size: 24px;
-    margin-top: 20px;
+    font-size: 1.3rem;
+    margin-top: 15px;
     font-weight: bold;
+    min-height: 30px;
+}
+
+.mobile-instructions {
+    text-align: center;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #d4e6f1;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: #2c3e50;
+    display: none;
 }
 
 @keyframes shake {
@@ -190,4 +232,82 @@ h1 {
 
 .shuffling {
     animation: shuffle-animation 0.5s ease-in-out;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .game-container {
+        padding: 12px;
+    }
+    
+    .answer-card {
+        padding: 8px 12px;
+        font-size: 0.95rem;
+    }
+    
+    .drop-zone {
+        min-width: 70px;
+        min-height: 28px;
+    }
+    
+    .question {
+        padding: 10px;
+    }
+    
+    .question-text {
+        font-size: 0.95rem;
+    }
+    
+    .explanation {
+        font-size: 0.85rem;
+        margin-left: 5px;
+    }
+    
+    .shuffle-btn, .reset-btn {
+        padding: 8px 12px;
+        font-size: 0.95rem;
+        min-width: 110px;
+    }
+    
+    .message {
+        font-size: 1.2rem;
+    }
+    
+    .mobile-instructions {
+        display: block;
+    }
+}
+
+@media (max-width: 400px) {
+    .game-wrapper {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 1.3rem;
+    }
+    
+    .answer-card {
+        padding: 7px 10px;
+        font-size: 0.9rem;
+    }
+    
+    .drop-zone {
+        min-width: 60px;
+    }
+    
+    .question-text {
+        font-size: 0.9rem;
+    }
+    
+    .shuffle-btn, .reset-btn {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+        min-width: 100px;
+    }
 }
